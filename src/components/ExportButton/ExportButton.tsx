@@ -1,9 +1,9 @@
-interface ActionButtonProps {
+interface ExportButtonProps {
 	text: string;
 	isDisabled: boolean;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ text, isDisabled = false }) => {
+const ExportButton: React.FC<ExportButtonProps> = ({ text, isDisabled = false }) => {
 	return (
 		<button
 			disabled={isDisabled}
@@ -14,4 +14,4 @@ const ActionButton: React.FC<ActionButtonProps> = ({ text, isDisabled = false })
 	);
 };
 
-export default ActionButton;
+export default ExportButton;

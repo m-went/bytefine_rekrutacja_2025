@@ -1,4 +1,4 @@
-import ActionButton from '../../components/molecules/ActionButton/ActionButton';
+import ExportButton from '../../components/ExportButton/ExportButton';
 
 const CanvasEditor = () => {
 	return (
@@ -14,7 +14,6 @@ const CanvasEditor = () => {
 						<img src='icons/logo.svg' />
 						<p>CanvasEditor</p>
 					</div>
-					<ActionButton text={'Reset'} isDisabled={false} />
 					<button className='bg-midnight'>
 						Reset
 						<img src='icons/reset.svg' />
@@ -30,7 +29,7 @@ const CanvasEditor = () => {
 					<button>Background</button>
 				</div>
 				<div />
-				<button>Export to PNG</button>
+				<ExportButton text={'Export to PNG'} isDisabled={false} />
 			</div>
 		</div>
 	);
