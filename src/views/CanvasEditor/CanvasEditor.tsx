@@ -1,3 +1,5 @@
+import ActionButton from '../../components/molecules/ActionButton/ActionButton';
+
 const CanvasEditor = () => {
 	return (
 		<div className='w-screen h-screen columns-2 py-[66px] px-[189px]'>
@@ -12,7 +14,8 @@ const CanvasEditor = () => {
 						<img src='icons/logo.svg' />
 						<p>CanvasEditor</p>
 					</div>
-					<button>
+					<ActionButton text={'Reset'} isDisabled={false} />
+					<button className='bg-midnight'>
 						Reset
 						<img src='icons/reset.svg' />
 					</button>

@@ -4,3 +4,24 @@
 body {
 	font-family: 'Poppins', sans-serif;
 }
+
+@theme {
+	/* color pallete */
+	--color-primary: #7209b7;
+	--color-primary50: #7209b780;
+
+	/* color neutrals */
+	--color-black100: #353535;
+	--color-black75: #676767;
+	--color-black50: #9b9b9b;
+	--color-black25: #cdcdcd;
+	--color-white: #ffffff;
+
+	/* color background */
+	--color-white98: #fafafa;
+	--color-white97: #f7f7f8;
+
+	/* buttons */
+	--color-button-hover: #550788;
+	--color-button-disabled: #cdcdcd;
+}
