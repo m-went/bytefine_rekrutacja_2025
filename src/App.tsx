@@ -1,4 +1,4 @@
-import MainPage from './views/MainPage/MainPage';
+import MainPage from './views/CanvasEditor/CanvasEditor';
 
 function App() {
 	return <MainPage />;
