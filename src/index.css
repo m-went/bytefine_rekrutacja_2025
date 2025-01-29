@@ -22,6 +22,5 @@ body {
 	--color-white97: #f7f7f8;
 
 	/* buttons */
-	--color-button-hover: #550788;
-	--color-button-disabled: #cdcdcd;
+	--color-primary-button-hover: #550788;
 }

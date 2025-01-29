@@ -1,4 +1,4 @@
-import ExportButton from '../../components/ExportButton/ExportButton';
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 
 const CanvasEditor = () => {
 	return (
@@ -29,7 +29,7 @@ const CanvasEditor = () => {
 					<button>Background</button>
 				</div>
 				<div />
-				<ExportButton text={'Export to PNG'} isDisabled={false} />
+				<PrimaryButton text={'Export to PNG'} isDisabled={false} />
 			</div>
 		</div>
 	);

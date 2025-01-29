@@ -1,9 +1,10 @@
-interface ExportButtonProps {
+interface ActionButtonProps {
 	text: string;
 	isDisabled: boolean;
+	icon: 'image' | 'text';
 }
 
-const ExportButton: React.FC<ExportButtonProps> = ({ text, isDisabled = false }) => {
+const ActionButton: React.FC<ActionButtonProps> = ({ icon, text, isDisabled = false }) => {
 	return (
 		<button
 			disabled={isDisabled}
@@ -14,4 +15,4 @@ const ExportButton: React.FC<ExportButtonProps> = ({ text, isDisabled = false })
 	);
 };
 
-export default ExportButton;
+export default ActionButton;
