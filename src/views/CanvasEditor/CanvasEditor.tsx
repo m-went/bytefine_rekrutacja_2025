@@ -1,3 +1,4 @@
+import TextColor from '../../components/atoms/TextColor/TextColor';
 import ActionButton from '../../components/molecules/ActionButton/ActionButton';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 
@@ -8,8 +9,16 @@ const CanvasEditor = () => {
 		{ text: 'Background', iconSrc: 'icons/background.svg' },
 	];
 
+	const textColorsList = [
+		{ selectorColor: 'black100', optionName: 'black' },
+		{ selectorColor: 'white', optionName: 'white' },
+		{ selectorColor: 'text-color-red', optionName: 'red' },
+		{ selectorColor: 'text-color-blue', optionName: 'blue' },
+		{ selectorColor: 'text-color-green', optionName: 'green' },
+	];
+
 	return (
-		<div className='w-screen h-screen columns-2 py-[66px] px-[189px]'>
+		<div className='w-screen h-screen columns-2 py-[66px] px-[189px] bg-black25'>
 			<div className='h-full'>
 				<div>
 					<img src='canvasEditor_background.png' />
@@ -35,6 +44,7 @@ const CanvasEditor = () => {
 						return <ActionButton key={button.text} text={button.text} isDisabled={false} iconSrc={button.iconSrc} />;
 					})}
 				</div>
+				<div className='flex gap-1.5'></div>
 				<div />
 				<PrimaryButton text={'Export to PNG'} isDisabled={false} />
 			</div>

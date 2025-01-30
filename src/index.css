@@ -23,6 +23,11 @@ body {
 
 	/* buttons */
 	--color-primary-button-hover: #550788;
+
+	/* text colors */
+	--color-text-color-red: #cf0000;
+	--color-text-color-blue: #0055ff;
+	--color-text-color-green: #00da16;
 }
 
 @layer components {
