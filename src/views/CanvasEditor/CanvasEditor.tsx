@@ -1,6 +1,13 @@
+import ActionButton from '../../components/molecules/ActionButton/ActionButton';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 
 const CanvasEditor = () => {
+	const actionButtonsList = [
+		{ text: 'Text', iconSrc: 'icons/text.svg' },
+		{ text: 'Image', iconSrc: 'icons/img.svg' },
+		{ text: 'Background', iconSrc: 'icons/background.svg' },
+	];
+
 	return (
 		<div className='w-screen h-screen columns-2 py-[66px] px-[189px]'>
 			<div className='h-full'>
@@ -23,10 +30,10 @@ const CanvasEditor = () => {
 				<div>
 					<p>Add content</p>
 				</div>
-				<div>
-					<button>Text</button>
-					<button>Image</button>
-					<button>Background</button>
+				<div className='grid grid-cols-2 gap-4'>
+					{actionButtonsList.map((button) => {
+						return <ActionButton key={button.text} text={button.text} isDisabled={false} iconSrc={button.iconSrc} />;
+					})}
 				</div>
 				<div />
 				<PrimaryButton text={'Export to PNG'} isDisabled={false} />

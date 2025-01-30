@@ -1,16 +1,20 @@
 interface ActionButtonProps {
 	text: string;
 	isDisabled: boolean;
-	icon: 'image' | 'text';
+	iconSrc: string;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ icon, text, isDisabled = false }) => {
+const ActionButton: React.FC<ActionButtonProps> = ({ iconSrc, text, isDisabled = false }) => {
 	return (
 		<button
 			disabled={isDisabled}
-			className='cursor-pointer disabled:cursor-not-allowed bg-primary px-[32px] py-[8px] h-[40px] w-auto min-w-[128px] rounded-[5px] font-semibold text-center text-[15px] leading-[22.5px] tracking-[0.5px] text-white hover:bg-button-hover focus:bg-primary focus:border-2 focus:border-primary50'
+			className='button-core button-font relative disabled:bg-white97 disabled:opacity-25 bg-white97 h-[256px] w-[365px] rounded-[10px] p-[12px] transition-all ease-in-out duration-250 hover:bg-black25 focus:bg-white97 focus:shadow-[inset_0_0_0_4px] focus:shadow-primary50 flex flex-col justify-center items-center'
 		>
-			{text}
+			<div className='size-[128px] flex items-center justify-center'>
+				<img className='size-[96px] m-4' src={iconSrc} aria-label='Button label' />
+			</div>
+
+			<p className='absolute bottom-[12px]'>{text}</p>
 		</button>
 	);
 };

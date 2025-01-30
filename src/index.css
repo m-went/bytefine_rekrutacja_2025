@@ -24,3 +24,13 @@ body {
 	/* buttons */
 	--color-primary-button-hover: #550788;
 }
+
+@layer components {
+	.button-font {
+		@apply font-semibold text-center text-[15px] leading-[22.5px] tracking-[0.5px];
+	}
+
+	.button-core {
+		@apply cursor-pointer disabled:cursor-not-allowed;
+	}
+}
