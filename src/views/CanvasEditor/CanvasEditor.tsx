@@ -1,5 +1,5 @@
-import TextColor from '../../components/atoms/TextColor/TextColor';
 import ActionButton from '../../components/molecules/ActionButton/ActionButton';
+import TextArea from '../../components/organisms/TextArea/TextArea';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 
 const CanvasEditor = () => {
@@ -9,19 +9,12 @@ const CanvasEditor = () => {
 		{ text: 'Background', iconSrc: 'icons/background.svg' },
 	];
 
-	const textColorsList = [
-		{ selectorColor: 'black100', optionName: 'black' },
-		{ selectorColor: 'white', optionName: 'white' },
-		{ selectorColor: 'text-color-red', optionName: 'red' },
-		{ selectorColor: 'text-color-blue', optionName: 'blue' },
-		{ selectorColor: 'text-color-green', optionName: 'green' },
-	];
-
 	return (
-		<div className='w-screen h-screen columns-2 py-[66px] px-[189px] bg-black25'>
+		<div className='w-screen h-screen columns-2 py-[66px] px-[189px]'>
 			<div className='h-full'>
-				<div>
-					<img src='canvasEditor_background.png' />
+				<div className='relative h-full'>
+					<img src='canvasEditor_background.png' className='absolute top-0 left-0 w-full h-full' />
+					<TextArea />
 				</div>
 			</div>
 			<div className='h-full flex flex-col'>
@@ -36,9 +29,11 @@ const CanvasEditor = () => {
 					</button>
 				</div>
 				<div />
+
 				<div>
 					<p>Add content</p>
 				</div>
+
 				<div className='grid grid-cols-2 gap-4'>
 					{actionButtonsList.map((button) => {
 						return <ActionButton key={button.text} text={button.text} isDisabled={false} iconSrc={button.iconSrc} />;
