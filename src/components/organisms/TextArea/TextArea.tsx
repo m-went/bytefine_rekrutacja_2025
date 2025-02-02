@@ -1,16 +1,30 @@
 import { useEffect, useState } from 'react';
 import TextColor from '../../atoms/TextColor/TextColor';
+import { useDraggable } from '@dnd-kit/core';
+import TextAreaEditControls from '../../molecules/TextAreaEditControls/TextAreaEditControls';
 
 interface TextAreaProps {
-	position: string;
+	position: { x: number; y: number };
+	id: string;
 }
 
 export type AllowedColors = 'black100' | 'white' | 'textcolor-red' | 'textcolor-blue' | 'textcolor-green';
 
-const TextArea: React.FC<TextAreaProps> = ({ position }) => {
+const TextArea: React.FC<TextAreaProps> = ({ position, id }) => {
 	const [size, setSize] = useState({ width: 350, height: 120 });
 	const [isResizing, setIsResizing] = useState(false);
-	const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+	const [resizingStartPosition, setResizingStartPosition] = useState({ x: 0, y: 0 });
+
+	const { attributes, listeners, setNodeRef, transform } = useDraggable({
+		id,
+	});
+
+	const style: React.CSSProperties = {
+		transform: `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`,
+		position: 'absolute',
+		left: `${position.x}px`,
+		top: `${position.y}px`,
+	};
 
 	const textColorsList: { selectorColor: AllowedColors; optionName: 'black' | 'white' | 'red' | 'blue' | 'green' }[] = [
 		{ selectorColor: 'black100', optionName: 'black' },
@@ -34,10 +48,9 @@ const TextArea: React.FC<TextAreaProps> = ({ position }) => {
 		const resize = (e: MouseEvent) => {
 			if (!isResizing) return;
 
-			console.log('start pos', { x: e.clientX, y: e.clientY });
 			const newPosition = {
-				width: Math.max(350, size.width + (e.clientX - startPosition.x)),
-				height: Math.max(120, size.height + (e.clientY - startPosition.y)),
+				width: Math.max(350, size.width + (e.clientX - resizingStartPosition.x)),
+				height: Math.max(120, size.height + (e.clientY - resizingStartPosition.y)),
 			};
 
 			if (newPosition.width < 350 || newPosition.height < 120) {
@@ -47,7 +60,7 @@ const TextArea: React.FC<TextAreaProps> = ({ position }) => {
 
 			setSize(newPosition);
 
-			setStartPosition({ x: e.clientX, y: e.clientY });
+			setResizingStartPosition({ x: e.clientX, y: e.clientY });
 		};
 
 		const stopResizing = () => setIsResizing(false);
@@ -61,43 +74,20 @@ const TextArea: React.FC<TextAreaProps> = ({ position }) => {
 			document.removeEventListener('mousemove', resize);
 			document.removeEventListener('mouseup', stopResizing);
 		};
-	}, [isResizing, size.height, size.width, startPosition]);
+	}, [isResizing, size.height, size.width, resizingStartPosition]);
 
 	const startResizing = (e: React.MouseEvent) => {
 		setIsResizing(true);
-		setStartPosition({ x: e.clientX, y: e.clientY });
+		setResizingStartPosition({ x: e.clientX, y: e.clientY });
 	};
 
 	return (
-		<div>
+		<div ref={setNodeRef} style={style}>
 			<div
 				style={{ width: `${size.width}px`, height: `${size.height}px` }}
 				className='bg-transparent px-[24px] py-[12px] border-2 border-primary relative'
 			>
-				<div className='cursor-grab absolute top-[-20px] left-[-20px] size-[40px] p-[8px] rounded-full bg-white'>
-					<img
-						className='size-[24px]'
-						style={{
-							filter: 'invert(16%) sepia(95%) saturate(5393%) hue-rotate(276deg) brightness(72%) contrast(109%)',
-						}}
-						src='icons/move.svg'
-						aria-label='Area holder'
-					/>
-				</div>
-				<div className='cursor-pointer absolute top-[-12px] right-[-13px] size-[24px] p-[3px] rounded-full bg-white'>
-					<img
-						className='size-[18px]'
-						src='icons/delete.svg'
-						style={{
-							filter: 'invert(8%) sepia(91%) saturate(6917%) hue-rotate(3deg) brightness(105%) contrast(110%)',
-						}}
-						aria-label='Area delete button'
-					/>
-				</div>
-				<button
-					onMouseDown={startResizing}
-					className='cursor-nw-resize absolute bottom-[-12px] right-[-13px] size-[24px] rounded-full bg-primary border-white border-4'
-				/>
+				<TextAreaEditControls listeners={listeners} attributes={attributes} startResizing={startResizing} />
 				<textarea
 					placeholder={'Type your text here'}
 					style={{ color: `var(--color-${selectedColor.textColor})` }}
