@@ -5,11 +5,17 @@ interface TextAreaEditControlsProps {
 	listeners: SyntheticListenerMap | undefined;
 	attributes: DraggableAttributes;
 	startResizing: (e: React.MouseEvent) => void;
+	onDelete: () => void;
 }
 
 export type AllowedColors = 'black100' | 'white' | 'textcolor-red' | 'textcolor-blue' | 'textcolor-green';
 
-const TextAreaEditControls: React.FC<TextAreaEditControlsProps> = ({ listeners, attributes, startResizing }) => {
+const TextAreaEditControls: React.FC<TextAreaEditControlsProps> = ({
+	listeners,
+	attributes,
+	startResizing,
+	onDelete,
+}) => {
 	return (
 		<>
 			<div
@@ -26,7 +32,10 @@ const TextAreaEditControls: React.FC<TextAreaEditControlsProps> = ({ listeners, 
 					aria-label='Area holder'
 				/>
 			</div>
-			<div className='cursor-pointer absolute top-[-12px] right-[-13px] size-[24px] p-[3px] rounded-full bg-white'>
+			<button
+				onClick={onDelete}
+				className='cursor-pointer absolute top-[-12px] right-[-13px] size-[24px] p-[3px] rounded-full bg-white'
+			>
 				<img
 					className='size-[18px]'
 					src='icons/delete.svg'
@@ -35,7 +44,7 @@ const TextAreaEditControls: React.FC<TextAreaEditControlsProps> = ({ listeners, 
 					}}
 					aria-label='Area delete button'
 				/>
-			</div>
+			</button>
 			<button
 				onMouseDown={startResizing}
 				className='cursor-nw-resize absolute bottom-[-12px] right-[-13px] size-[24px] rounded-full bg-primary border-white border-4'
